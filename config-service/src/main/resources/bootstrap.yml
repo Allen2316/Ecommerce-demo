@@ -8,6 +8,7 @@ spring:
         git:
           uri: https://github.com/Allen2316/Ecommerce-demo.git
           searchPath: config-data
+          default-label: main
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
   security:
