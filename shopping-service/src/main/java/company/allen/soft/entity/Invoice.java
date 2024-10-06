@@ -3,6 +3,7 @@ package company.allen.soft.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import company.allen.soft.model.Customer;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.Data;
@@ -43,6 +44,9 @@ public class Invoice {
     private List<InvoiceItem> items;
 
     private String state;
+
+    @Transient
+    private Customer customer;
 
     public Invoice(){
         items = new ArrayList<>();
