@@ -50,7 +50,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         invoiceDB.getItems().forEach(invoiceItem -> {
             productClient.updateStockProduct(invoiceItem.getProductId(), invoiceItem.getQuantity() * -1);
         });
-        return invoiceRepository.save(invoice);
+        return invoiceDB;
     }
 
 
@@ -85,9 +85,11 @@ public class InvoiceServiceImpl implements InvoiceService {
         Invoice invoice = invoiceRepository.findById(id).orElse(null);
         if (invoice != null){
             Customer customer = customerClient.getCustomer(invoice.getCustomerId()).getBody();
+            log.info("Customer retrieved: " + customer);
             invoice.setCustomer(customer);
             List<InvoiceItem> listItems = invoice.getItems().stream().map(invoiceItem -> {
                 Product product = productClient.getProduct(invoiceItem.getProductId()).getBody();
+                log.info("Product retrieved for item " + invoiceItem.getProductId() + ": " + product);
                 invoiceItem.setProduct(product);
                 return invoiceItem;
             }).collect(Collectors.toList());

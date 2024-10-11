@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS tlb_invoices;
 
 CREATE TABLE tlb_invoices (
-  id BIGINT AUTO_INCREMENT  PRIMARY KEY,
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
   number_invoice VARCHAR(250) NOT NULL,
   description VARCHAR(250) NOT NULL,
   customer_id  BIGINT,
